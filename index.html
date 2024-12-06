@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display a map</title>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="Test 2\leaflet-locatecontrol-gh-pages\leaflet-locatecontrol-gh-pages\dist\L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="Test 2\Leaflet.markercluster-1.4.1 (1)\Leaflet.markercluster-1.4.1\dist\MarkerCluster.css" />
+  <link rel="stylesheet" href="Test 2\Leaflet.markercluster-1.4.1 (1)\Leaflet.markercluster-1.4.1\dist\MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> 
+  <link href="https://cdn.maptiler.com/maptiler-geocoding-control/v1.3.3/style.css" rel="stylesheet">
+   
+  <style>
+  
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+        width: 100%;
+        height: 100vh;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="map"></div>
+
+</body>
+
+</html>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+<!-- geojson data  -->
+<script src="Test 2/poi.js" type="text/javascript"></script>
+
+<!-- leaflet js  -->
+
+<script src="Test 2\Leaflet.markercluster-1.4.1 (1)\Leaflet.markercluster-1.4.1\dist\leaflet.markercluster.js"></script>
+<script src="https://cdn.maptiler.com/maptiler-geocoding-control/v1.3.3/leaflet.umd.js"></script>
+
+<script>
+  const key = '1BXpXsHB3m2uZo5DyFjV';
+
+  var map = L.map('map').setView([3.80, 107.36], 6);
+  var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      });
+      osm.addTo(map);
+
+//geoJSON data
+var markers = L.markerClusterGroup();
+var marker = L.geoJSON(locations);
+
+//leaflet marker cluster
+markers.addLayer(marker);
+map.addLayer(markers);
+
+  var KualaLumpur     = L.marker([3.1478, 101.6953]).bindPopup('This is Kuala Lumpur.'),
+      GeorgeTown      = L.marker([5.4144, 100.3292]).bindPopup('This is George Town.'),
+      KotaBharu       = L.marker([6.1333, 102.2500]).bindPopup('This is Kota Bharu.'),
+      SeberangJaya    = L.marker([5.4083, 100.3695]).bindPopup('This is Seberang Jaya.'),
+      Klang           = L.marker([3.0333, 101.4500]).bindPopup('This is Klang.'),
+      Ipoh            = L.marker([4.5972, 101.0750]).bindPopup('This is Ipoh.'),
+      PetalingJaya    = L.marker([3.0972, 101.6444]).bindPopup('This is Petaling Jaya.'),
+      Kuantan         = L.marker([3.8167, 103.3333]).bindPopup('This is Kuantan.'),
+      ShahAlam        = L.marker([3.0722, 101.5167]).bindPopup('This is Shah Alam.'),
+      SungaiPetani    = L.marker([5.6500, 100.5000]).bindPopup('This is Sungai Petani.'),
+      Melaka          = L.marker([2.1944, 102.2486]).bindPopup('This is Melaka.'),
+      KotaKinabalu    = L.marker([5.9750, 116.0725]).bindPopup('This is Kota Kinabalu.'),
+      Seremban        = L.marker([2.7222, 101.9417]).bindPopup('This is Seremban.'),
+      Sandakan        = L.marker([5.8333, 118.1167]).bindPopup('This is Sandakan.'),
+      Kuching         = L.marker([1.5575, 110.3439]).bindPopup('This is Kuching.'),
+      KualaTerengganu = L.marker([5.3292, 103.1361]).bindPopup('This is Kuala Terengganu.'),
+      Sibu            = L.marker([2.2878, 111.8308]).bindPopup('This is Sibu.'),
+      Muar            = L.marker([2.0500, 102.5667]).bindPopup('This is Muar.'),
+      Tumpat          = L.marker([6.1667, 102.1667]).bindPopup('This is Tumpat.'),
+      PortDickson     = L.marker([2.5167, 101.8000]).bindPopup('This is Port Dickson.'),
+      Butterworth     = L.marker([5.3942, 100.3664]).bindPopup('This is Butterworth.'),
+      JohorBahru      = L.marker([1.4556, 103.7611]).bindPopup('This is Johor Bahru.');
+
+  var cities = L.layerGroup([KualaLumpur, GeorgeTown, KotaBharu, SeberangJaya, Klang, Ipoh, PetalingJaya, Kuantan, ShahAlam, SungaiPetani, Melaka, KotaKinabalu, Seremban, Sandakan, Kuching, KualaTerengganu, Sibu, Muar, Tumpat, PortDickson, Butterworth, JohorBahru]);
+
+  var Petronas = L.marker([3.1575, 101.7116],{
+      title: "Petronas Twin Tower"
+      }).bindPopup("<h1>Petronas Twin Tower</h1><p>No trip to KL would be complete without a visit to the world's tallest twin towers. The skyscrapers are utterly stunning, particularly when illuminated at night. The Twin Towers Visit Operations is open Tuesday through Sunday and tickets are released at 8:30 a.m. on a first-come, first-served basis.</p><img src='./InteractiveMap/petronastower.jpg' style='width:300px'>"),
+      Legoland = L.marker([1.4272, 103.6295],{
+      title: "LEGOLAND® Malaysia Resort"
+      }).bindPopup("<h1>LEGOLAND® Malaysia Resort</h1><p>Step into the land where the world is made out of LEGO, something we have all been dreaming of when we were younger. There are three different zones for you to explore (Theme Park, Water Park, and Sea Life) and a beautiful LEGO “castle” for you to unwind and take a rest.</p><img src='./InteractiveMap/legoland.jpg' style='width:300px'>"),
+      BatuCaves = L.marker([3.2379, 101.6840],{
+      title: "Batu Caves"
+      }).bindPopup("<h1>Batu Caves</h1><p>Hindu shrine complex with a striking 140ft golden Lord Murugan statue, vibrant steps, and cave temples. Cultural landmark with religious activities and local wildlife.</p><img src='./InteractiveMap/batucaves.jpg' style='width:300px'>"),
+      Escape = L.marker([5.4497, 100.2140],{
+      title: "ESCAPE Penang"
+      }).bindPopup("<h1>ESCAPE Penang</h1><p>ESCAPE is the fun destination with exciting rides and attractions. Hosted with nature in mind. Located in Penang, ESCAPE re-introduces outdoor play in a natural environment so to give the visitor an appreciation of the world around them and shows that there's no age limit to having fun.</p><img src='./InteractiveMap/escape.jpeg' style='width:300px'>"),
+      Sunway = L.marker([3.0694, 101.6068],{
+      title: "Sunway Lagoon"
+      }).bindPopup("<h1>Sunway Lagoon</h1><p>Sunway Lagoon is a famous multi-award-winning theme park located in Sunway City, within the district of Petaling Jaya, Selangor. Opened in 1992, it spans across an area of 88 acres and boasts over 90 attractions that spread across six adventure zones – Water Park, Amusement Park, Wildlife Park, Extreme Park, Scream Park and the Nickelodeon Lost Lagoon.</p><img src='./InteractiveMap/SunwayLagoon.jpg' style='width:300px'>"),
+      KlccPark = L.marker([3.1556, 101.7148],{
+      title: "KLCC Park"
+      }).bindPopup("<h1>KLCC Park</h1><p>Illuminated fountain light show set against the backdrop of iconic towers, paired with a serene park ambiance, evening strolls, and a children's play area.</p><img src='./InteractiveMap/klccpark.jpg' style='width:300px'>"),
+      SkyCab = L.marker([6.371389, 99.671667],{
+      title: "Panorama Langkawi SkyCab"
+      }).bindPopup("<h1>Panorama Langkawi Sky Cab</h1><p>One cannot claim to have visited Langkawi without taking a ride on the Panorama Langkawi SkyCab. Touted as one of the island’s main attractions, the SkyCab offers a 15-minute exhilarating ride up to the peak of Mount Mat Cincang, which is well-known as the oldest rock formation in Southeast Asia.</p><img src='./InteractiveMap/langkawiskycab.jpg' style='width:300px'>"),
+      Tioman = L.marker([2.7902, 104.1698],{
+      title: "Tioman Island"
+      }).bindPopup("<h1>Tioman Island</h1><p>A pristine duty-free paradise off the east coast of Peninsular Malaysia in Rompin district, Pahang, Tioman Island stands out as a beacon of natural magnificence, having been named one of the world's most beautiful islands in the world in 1970 by TIME magazine.</p><img src='./InteractiveMap/tioman.jpg' style='width:300px'>"),
+      Perhentian = L.marker([5.916667, 102.733330],{
+      title: "Perhentian Island"
+      }).bindPopup("<h1>Perhentian Island</h1><p>Fondly crowned the 13th best beach in the world by CNN in 2013 and the 5th best island to swing in a hammock in by the Lonely Planet Travel Guide 2010, Perhentian more than lives up to its reputation given its serenity and tranquillity.</p><img src='./InteractiveMap/perhentian.jpg' style='width:300px'>"),
+      AbdulSamad = L.marker([3.148815424337218, 101.69441522319556],{
+      title: "Sultan Abdul Samad Building"
+      }).bindPopup("<h1>Sultan Abdul Samad Building</h1><p>Built in 1897, Sultan Abdul Samad Building was named after the Sultan of Selangor at the time. As you gaze upon its mesmerising architecture, you will be enchanted by the grand porch, the huge arches, the clock tower, the curved colonnades, and the exquisite copper cupolas. There's a reason why it serves as a backdrop for Malaysia's Independence Day parades every year!</p><img src='./InteractiveMap/sultanabdulsamad.jpg' style='width:300px'>"),
+      Famosa = L.marker([2.1918, 102.2504],{
+      title: "A'Famosa"
+      }).bindPopup("<h1>A'Famosa</h1><p>Built by the Portuguese in the early 16th century, this fort in Melaka is the oldest European architectural remains in Southeast Asia. Fortified with walls three metres thick and a watchtower 40 metres high, the A'Famosa played a key role in protecting the Portuguese from their enemies.</p><img src='./InteractiveMap/famosa.jpg' style='width:300px'>"),
+      Pangkor = L.marker([4.2275, 100.5577],{
+      title: "Pangkor Island"
+      }).bindPopup("<h1>Pangkor Island</h1><p>Located on the west coast of Peninsular Malaysia, Pangkor Island is notable for its scenic beachside views and the carefree state of mind it can leave you with. The island is also dotted with scenic fishing villages, which you can visit to learn more about the everyday lives of Malaysian fishermen.</p><img src='./InteractiveMap/pangkor.jpg' style='width:300px'>"),
+      NationalPark = L.marker([4.6360, 102.4069],{
+      title: "National Park"
+      }).bindPopup("<h1>National Park</h1><p>National Park offers a host of exciting experiences such as trekking, climbing Mount Tahan or exploring undisturbed limestone forest and caves. Wildlife lovers can opt to spend a night here, observing wildlife at nearby salt licks or try spotting exotic birds and other creatures.</p><img src='./InteractiveMap/tamannegara.jpg' style='width:300px'>"),
+      Crystal = L.marker([5.3223, 103.1206],{
+      title: "Crystal Mosque"
+      }).bindPopup("<h1>Crystal Mosque</h1><p>Located in Terengganu, Crystal Mosque holds a unique place of pride among the most remarkable mosques in the world. As the name suggests, the glass exteriors that reflect the sea give off a sparkling crystal-like illusion, also making it seem as if the mosque is floating.</p><img src='./InteractiveMap/masjidkristal.jpg' style='width:300px'>"),
+      Lexis = L.marker([2.41911, 101.87376],{
+      title: "Lexis Hibiscus"
+      }).bindPopup("<h1>Lexis Hibiscus</h1><p>Located just 45 minutes away from Kuala Lumpur International Airport is this fascinating resort complex which attracts people from around the world to enjoy its pools. Why? It has pool villas shaped like hibiscus flowers, which is Malaysia's national flower. That surely makes it one of the world's most unique hotels!</p><img src='./InteractiveMap/lexishibiscus.jpg' style='width:300px'>"),
+      Cameron = L.marker([4.4679, 101.3848],{
+      title: "Cameron Highland"
+      }).bindPopup("<h1>Cameron Highland</h1><p>Cool weather, rolling hills of scenic tea plantations, and a whole range of leisure activities make Cameron Highlands a desirable tourist destination. Among all the attractions in Cameron Highlands, tea plantations are obviously one of the defining points that distinguishes it from the rest of the hill resorts in the country.</p><img src='./InteractiveMap/cameron.jpg' style='width:300px'>"),
+      Endau = L.marker([2.4719, 103.2663],{
+      title: "Endau-Rompin National Park"
+      }).bindPopup("<h1>Endau-Rompin National Park</h1><p>The Endau-Rompin National Park offers nature enthusiasts a pure and magnificent experience of diving into a lush green scenery, and a wholesome journey of adventure. It promises a breathtaking retreat for anyone who needs a break from the hustle and bustle of the city.</p><img src='./InteractiveMap/endaurompin.jpg' style='width:300px'>"),
+      Sipadan = L.marker([4.1150, 118.6287],{
+      title: "Sipadan Island"
+      }).bindPopup("<h1>Sipadan Island</h1><p>Located about 20 miles from Semporna, Sabah, Sipadan is Malaysia’s only oceanic island of volcanic origin. As the top of a steep sea mountain, it rises from a 600-metre abyss in the Celebes Sea. The island was originally declared a bird sanctuary in 1933 for migratory birds. From 1981 onwards, it became a marine reserve.</p><img src='./InteractiveMap/sipadan.jpg' style='width:300px'>"),
+      Kinabalu = L.marker([6.0753, 116.5588],{
+      title: "Mount Kinabalu"
+      }).bindPopup("<h1>Mount Kinabalu</h1><p>At a height of 4,095 metres (13,435 feet) above sea level, Mount Kinabalu is Southeast Asia’s highest peak. Located in the Ranau district, West Coast Division of Sabah, Mount Kinabalu is a world-famous destination, particularly among avid mountain climbers. It’s the main attraction of the Kinabalu Park, a UNESCO World Heritage Site.</p><img src='./InteractiveMap/kinabalu.jpg' style='width:300px'>"),
+      Bako = L.marker([1.7067, 110.4663],{
+      title: "Bako National Park"
+      }).bindPopup("<h1>Bako National Park</h1><p>Bako National Park is the oldest national park in Sarawak. Being just 37 kilometres away from Kuching city, it is a strategic ecotourism spot for local and foreign tourists; hence, it is no surprise that Bako National Park is one of the most popular natural attractions in the state.</p><img src='./InteractiveMap/bako.jpg' style='width:300px'>"),
+      Niah = L.marker([3.8015, 113.7853],{
+      title: "Niah National Park"
+      }).bindPopup("<h1>Niah National Park</h1><p>Located in Miri, Sarawak, Niah National Park is one of the most important archaeological sites in the world, as some of the oldest human remains in Southeast Asia were found there. Covering an area of 3,138 hectares of forest and limestone karst areas, it was designated as a national park by the Sarawak government in 1974.</p><img src='./InteractiveMap/niah.jpg' style='width:300px'>"),
+      Batang = L.marker([1.7067, 110.4663],{
+      title: "Batang Ai National Park"
+      }).bindPopup("<h1>Batang Ai National Park</h1><p>From the moment the longboat whisks you across the artificial lake, along the Batang Ai River into the forest, Batang Ai National Park feels a world away from modern-day Kuching. It’s part of a protected Borneo rainforest that spills across the Malaysian border into Indonesia and is home to Iban longhouses, wild orangutans, gibbons.</p><img src='./InteractiveMap/batang.jpeg' style='width:300px'>"),
+      Aquaria = L.marker([3.1533927, 101.713078],{
+      title: "Aquaria KLCC"
+      }).bindPopup("<h1>Aquaria KLCC</h1><p>Nestled in the heart of the bustling 'Golden Triangle' of Kuala Lumpur and within walking distance from the Petronas Twin Towers, Aquaria KLCC is a state-of-the-art oceanarium showcasing over 5,000 different exhibits of aquatic and land-bound creatures over a sprawling 60,000 square-foot space in the Concourse Level of the Kuala Lumpur Convention Centre.</p><img src='./InteractiveMap/aquariaklcc.jpeg' style='width:300px'>"); 
+      
+var attractions = L.layerGroup([Petronas, Legoland, BatuCaves, Escape, Sunway, KlccPark, SkyCab, Tioman, Perhentian, AbdulSamad, Famosa, Pangkor, NationalPark, Crystal, Lexis, Cameron, Endau, Sipadan, Kinabalu, Bako, Niah, Batang, Aquaria]);
+
+L.control.maptilerGeocoding({ apiKey: key }).addTo(map);
+
+//Leaflet layer control
+var overlayMaps = {
+    'Cities': cities,
+    'Top Attractions': attractions
+}
+
+L.control.layers(overlayMaps).addTo(map)
+
+var options = {
+    strings: {
+      title: "Show me where I am, yo!"
+    }
+  };
+
+L.control.locate(options).addTo(map)
+
+</script>
+</html>
